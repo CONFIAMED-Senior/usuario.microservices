@@ -1,4 +1,6 @@
-﻿namespace Sentinel.Identity.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Sentinel.Identity.Domain.Entities;
 
 public class User : BaseEntity
 {
@@ -12,6 +14,10 @@ public class User : BaseEntity
     public string Username { get; private set; }
     public string Email { get; private set; }
     public bool EmailVerified { get; private set; }
+    
+    public virtual ICollection<UserWorkItem> UserWorkItems { get; set; } = new List<UserWorkItem>();
+
+    
 
     private User() { }
 
@@ -29,7 +35,7 @@ public class User : BaseEntity
             PasswordHash = passwordHash,
             Phone = phone,
             Address = address,
-            EmailVerified = false
+            EmailVerified = false,
         };
     }
 

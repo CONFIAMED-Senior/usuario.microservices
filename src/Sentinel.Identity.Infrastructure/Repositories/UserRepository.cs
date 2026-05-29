@@ -20,6 +20,24 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
     }
 
+    public async Task<IEnumerable<WorkItem>> GetWorkItemsByStatusAsync(char status, CancellationToken cancellationToken = default)
+    {
+        return await _context.WorkItems
+            .Where(x => x.StatusWi == status)
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<WorkItem>> GetWorkItemsByUserIdAsync(int userId, CancellationToken cancellationToken = default)
+    {
+        return await _context.UserWorkItems
+            .Where(x => x.IdUs == userId)
+            .Select(x => x.IdWiNavigation)
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
+        
+    }
+
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default)
     {
         return await _context.Users

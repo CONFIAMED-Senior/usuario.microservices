@@ -78,6 +78,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasColumnName("email_verified")
             .HasDefaultValue(false)
             .IsRequired();
+        
 
         // Índices únicos
         builder.HasIndex(u => u.Username)

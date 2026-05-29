@@ -5,11 +5,11 @@ using Sentinel.Identity.Application.Commands;
 using Sentinel.Identity.Application.Commands.Users;
 using Sentinel.Identity.Application.DTOs.Auth;
 using Sentinel.Identity.Application.Queries.Users;
+using Sentinel.Identity.Application.Queries.WorkItem;
 
 namespace Sentinel.Identity.Api.Controllers;
 
 [ApiController]
-[Authorize]
 [Route("api/[controller]")]
 public class UsersController : ControllerBase
 {
@@ -20,7 +20,23 @@ public class UsersController : ControllerBase
         _mediator = mediator;
     }
 
+    
+    [HttpGet("{userId:int}/work-items")]
+    public async Task<IActionResult> GetWorkItemsByUserId(int userId, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new GetWorkItemsByUserIdQuery(userId), cancellationToken);
+        return Ok(response);
+    }
+    
+    [HttpGet("status/{status}")]
+    public async Task<IActionResult> GetWorkItemsByStatus(char status, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new GetWorkItemsByStatusQuery(status), cancellationToken);
+        return Ok(response);
+    }
+    
     [HttpGet("all")]
+    
     public async Task<ActionResult<ApiResponse<IEnumerable<UserListDto>>>> GetAll(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetAllUsersQuery(), cancellationToken);

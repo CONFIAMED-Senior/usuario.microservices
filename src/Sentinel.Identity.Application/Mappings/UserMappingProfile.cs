@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Sentinel.Identity.Application.DTOs;
 using Sentinel.Identity.Application.DTOs.Auth;
 using Sentinel.Identity.Domain.Entities;
 
@@ -10,5 +11,16 @@ public class UserMappingProfile : Profile
     {
         CreateMap<User, UserListDto>();
         CreateMap<UserWriteDto, User>();
+        
+        CreateMap<WorkItem, WorkItemDto>()
+            .ConstructUsing(src => new WorkItemDto(
+                src.IdWi,
+                src.CodeWi,
+                src.DescriptionWi,
+                src.StatusWi,
+                src.Relevance,
+                src.CreatedAt,
+                src.ExpirationDate
+            ));
     }
 }

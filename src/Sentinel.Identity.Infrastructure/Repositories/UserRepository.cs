@@ -59,7 +59,7 @@ public class UserRepository : IUserRepository
     public async Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default)
     {
         return await _context.Users
-            .Where(u => u.Status == 'A')
+            .Where(u => u.Status == 'A' || u.Status == 'S')
             .ToListAsync(cancellationToken);
     }
 

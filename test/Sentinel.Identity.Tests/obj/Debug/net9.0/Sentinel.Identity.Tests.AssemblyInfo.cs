@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sentinel.Identity.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f967dab9b34c0b7e31200ecebf602b87206a6bbf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56641c01f6d48f6b36dad58a2660461da0966d63")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sentinel.Identity.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sentinel.Identity.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
